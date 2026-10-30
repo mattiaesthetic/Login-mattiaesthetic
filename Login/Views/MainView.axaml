@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Login.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Login.Views.MainView"
+             x:DataType="vm:MainViewModel">
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <StackPanel Spacing="20" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <TextBlock
+            Text="{Binding DisplayText}"
+            Background="Black"
+            Foreground="WhiteSmoke"
+            FontSize="50"
+            FontFamily="Times New Roman, Arial"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom" />
+
+        <ListBox
+            ItemsSource="{Binding Names}"
+            SelectedItem="{Binding SelectedName}"
+            IsEnabled="{Binding !IsLoggedIn}"
+            Width="250"
+            Height="150"
+            FontSize="20"
+            HorizontalAlignment="Center" />
+
+        <TextBox
+            HorizontalAlignment="Center"
+            Width="250"
+            FontSize="25"
+            PasswordChar="§"
+            Text="{Binding PasswordInput}"
+            PlaceholderText="Inserire la password" />
+
+        <Button
+            Content="{Binding ButtonText}"
+            Command="{Binding SubmitCommand}"
+            HorizontalAlignment="Center" />
+    </StackPanel>
+</UserControl>
