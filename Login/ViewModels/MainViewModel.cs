@@ -1,4 +1,6 @@
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -12,7 +14,12 @@ public partial class MainViewModel : ObservableObject
         "lordcrociato",
         "sswagtho",
         "mrsccs",
-        "coccoies"
+        "coccoies",
+        "Cat_Matt10",
+        "DiegoAldy09",
+        "Parliamo",
+        "Matthew_What",
+        "Placchiii"
     };
     
     [ObservableProperty]
@@ -20,9 +27,15 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty]
     private string _passwordInput = string.Empty;
+    
+    [ObservableProperty]
+    private string _newNameInput = string.Empty;
 
     [ObservableProperty]
-    private string _displayText = "Benvenuto";
+    private string _displayText = "Hello";
+    
+    [ObservableProperty]
+    private string _displayText2 = "Scegli un account";
 
     [ObservableProperty]
     private string _buttonText = "LOGIN";
@@ -34,7 +47,7 @@ public partial class MainViewModel : ObservableObject
     {
         if (!IsLoggedIn && value is not null)
         {
-            DisplayText = $"Benvenuto/a {value}";
+            DisplayText = $"Benvenuto/a, {value}";
         }
     }
 
@@ -67,5 +80,27 @@ public partial class MainViewModel : ObservableObject
             DisplayText = "Arrivederci";
             ButtonText = "LOGIN";
         }
+    }
+    
+    [RelayCommand]
+    private void AddAccount()
+    {
+        var name = NewNameInput.Trim();
+
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            DisplayText = "Inserire il nome del nuovo account";
+            return;
+        }
+
+        if (Names.Any(n => string.Equals(n, name, StringComparison.OrdinalIgnoreCase)))
+        {
+            DisplayText = $"L'account {name} esiste già";
+            return;
+        }
+
+        Names.Add(name);
+        SelectedName = name;
+        NewNameInput = string.Empty;
     }
 }

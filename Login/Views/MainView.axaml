@@ -10,12 +10,21 @@
         <vm:MainViewModel />
     </Design.DataContext>
 
-    <StackPanel Spacing="20" HorizontalAlignment="Center" VerticalAlignment="Top">
+    <StackPanel Spacing="30" HorizontalAlignment="Center" VerticalAlignment="Top">
         <TextBlock
             Text="{Binding DisplayText}"
             Background="Black"
             Foreground="WhiteSmoke"
             FontSize="50"
+            FontFamily="Times New Roman, Arial"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom" />
+        
+        <TextBlock
+            Text="{Binding DisplayText2}"
+            Background="Black"
+            Foreground="DimGray"
+            FontSize="20"
             FontFamily="Times New Roman, Arial"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom" />
@@ -25,13 +34,15 @@
             SelectedItem="{Binding SelectedName}"
             IsEnabled="{Binding !IsLoggedIn}"
             Width="250"
-            Height="150"
+            Height="200"
             FontSize="20"
+            FontFamily="Arial"
             HorizontalAlignment="Center" />
 
         <TextBox
             HorizontalAlignment="Center"
-            Width="250"
+            Width="260"
+            Height="75"
             FontSize="25"
             PasswordChar="§"
             Text="{Binding PasswordInput}"
@@ -40,6 +51,22 @@
         <Button
             Content="{Binding ButtonText}"
             Command="{Binding SubmitCommand}"
+            FontSize="15"
+            HorizontalAlignment="Center" />
+        
+        <Separator />
+
+        <TextBox
+            HorizontalAlignment="Center"
+            Width="250"
+            FontSize="20"
+            Text="{Binding NewNameInput}"
+            PlaceholderText="Nome nuovo account" />
+
+        <Button
+            Content="AGGIUNGI ACCOUNT"
+            Command="{Binding AddAccountCommand}"
+            IsEnabled="{Binding !IsLoggedIn}"
             HorizontalAlignment="Center" />
     </StackPanel>
 </UserControl>
